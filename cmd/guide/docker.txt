@@ -1,0 +1,17 @@
+https://www.youtube.com/watch?v=fqMOX6JJhGo - Docker Tutorial for Beginners - A Full DevOps Course on How to Run Applications in Containers
+
+install docker on ubuntu
+curl -fsSL https://get.docker.com -o get-docker.sh  - скачивает файл установки
+sudo sh get-docker.sh - устанавливает docker
+
+if something went wrong:
+*******************************************
+Tip: preview script steps before running
+
+You can run the script with the DRY_RUN=1 option to learn what steps the script will execute during installation:
+
+ curl -fsSL https://get.docker.com -o get-docker.sh
+
+ DRY_RUN=1 sh ./get-docker.sh
+ *******************************************
+
