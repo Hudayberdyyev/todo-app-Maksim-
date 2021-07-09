@@ -1,0 +1,6 @@
+create migration:
+migrate create -ext sql -dir ./schema -seq [migrationName]
+
+migration up and down: 
+migrate -path ./schema -database 'postgres://[username]:[password]@localhost:5432/[dbName]?sslmode=disable' up
+migrate -path ./schema -database 'postgres://[username]:[password]@localhost:5432/[dbName]?sslmode=disable' down
