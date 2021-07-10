@@ -4,3 +4,4 @@ go get -u github.com/golang-migrate/migrate - migration_lib
 go get -u github.com/jmoiron/sqlx - database_lib
 go get -u github.com/joho/godotenv - .env files lib
 go get -u github.com/sirupsen/logrus - logs lib
+go get -u github.com/dgrijalva/jwt-go - jwt tokens lib
