@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/Hudayberdyyev/todo-app-Maksim-"
 	"github.com/gin-gonic/gin"
@@ -54,7 +55,26 @@ func (h *Handler) getAllLists(c *gin.Context) {
 }
 
 func (h *Handler) getListById(c *gin.Context) {
+	userId, ok := getUserId(c)
+	if ok != nil {
+		return
+	}
 
+	id, err := strconv.Atoi(c.Param("id"))
+
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid id param")
+		return
+	}
+
+	list, err := h.services.TodoList.GetById(userId, id)
+
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, list)
 }
 
 func (h *Handler) updateList(c *gin.Context) {
@@ -62,5 +82,26 @@ func (h *Handler) updateList(c *gin.Context) {
 }
 
 func (h *Handler) deleteList(c *gin.Context) {
+	userId, ok := getUserId(c)
+	if ok != nil {
+		return
+	}
 
+	id, err := strconv.Atoi(c.Param("id"))
+
+	if err != nil {
+		newErrorResponse(c, http.StatusBadRequest, "invalid id param")
+		return
+	}
+
+	err = h.services.TodoList.Delete(userId, id)
+
+	if err != nil {
+		newErrorResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, statusResponse{
+		Status: "ok",
+	})
 }
